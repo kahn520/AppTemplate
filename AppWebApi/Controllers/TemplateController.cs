@@ -25,5 +25,13 @@ namespace AppWebApi.Controllers
             string json = db.GetTemplateList();
             return json;
         }
+
+        [ActionName("TemplateList")]
+        [HttpGet]
+        public string GetTemplateList(int page)
+        {
+            string json = db.GetTemplateList(page);
+            return json;
+        }
     }
 }
