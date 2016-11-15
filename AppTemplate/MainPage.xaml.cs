@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,6 +33,8 @@ namespace AppTemplate
         public MainPage()
         {
             this.InitializeComponent();
+            ApplicationView.PreferredLaunchViewSize = new Size(1280, 720);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             listLogic = new TemplateListLogic();
             
         }
@@ -69,6 +72,23 @@ namespace AppTemplate
                 flipView.ItemsSource = listDataBind;
             }
             
+        }
+
+        private void VisualStateGroup_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+
+        }
+
+        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private async void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+            OfficeHelper office = new OfficeHelper();
+            ListModel model = (ListModel) ((Button) e.OriginalSource).DataContext;
+            office.OpenTemplate(model.FileName);
         }
     }
 }

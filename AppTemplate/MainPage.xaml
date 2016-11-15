@@ -6,29 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Width="1280"
-    Height="720" Loaded="Page_Loaded">
+    Loaded="Page_Loaded">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Viewbox Stretch="UniformToFill">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <FlipView x:Name="flipView" ItemsSource="{Binding}" Grid.Row="1" SelectionChanged="flipView_SelectionChanged">
-            <FlipView.ItemTemplate>
-                <DataTemplate>
-                    <Grid x:Name="gridContent">
-                        <GridView ItemsSource="{Binding ListDatas}">
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding ThumbName}" Stretch="Fill" Width="150" Height="120"></Image>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
-                </DataTemplate>
-            </FlipView.ItemTemplate>
-        </FlipView>
-    </Grid>
+            <FlipView x:Name="flipView" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="flipView_SelectionChanged">
+                <FlipView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="gridContent">
+                            <GridView ItemsSource="{Binding ListDatas}">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <RelativePanel Width="250" Height="140">
+                                            <Image Source="{Binding ThumbName}" Stretch="Fill" Width="250" Height="140"></Image>
+                                            <StackPanel RelativePanel.AlignBottomWithPanel="True" Orientation="Horizontal" Width="250" Height="40">
+                                                <Button x:Name="btnOpen" Width="250" Height="40" Click="btnOpen_Click">Open</Button>
+                                            </StackPanel>
+                                        </RelativePanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </Grid>
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
+        </Grid>
+    </Viewbox>
 </Page>
