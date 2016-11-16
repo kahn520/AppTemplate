@@ -9,12 +9,15 @@
     Loaded="Page_Loaded">
 
     <Viewbox Stretch="UniformToFill">
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Width="1280" Height="720">
+            <Grid.Background>
+                <ImageBrush Stretch="Fill" ImageSource="bg.jpg"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" FontSize="36" Foreground="White" Margin="40,0,0,0">Office　Designer</TextBlock>
             <FlipView x:Name="flipView" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="flipView_SelectionChanged">
                 <FlipView.ItemTemplate>
                     <DataTemplate>
@@ -24,6 +27,9 @@
                                     <DataTemplate>
                                         <RelativePanel Width="250" Height="140">
                                             <Image Source="{Binding ThumbName}" Stretch="Fill" Width="250" Height="140"></Image>
+                                            <ProgressRing x:Name="ProgressRing" Width="40" Height="40"
+                                                          RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                                                          RelativePanel.AlignVerticalCenterWithPanel="True"/>
                                             <StackPanel RelativePanel.AlignBottomWithPanel="True" Orientation="Horizontal" Width="250" Height="40">
                                                 <Button x:Name="btnOpen" Width="250" Height="40" Click="btnOpen_Click">Open</Button>
                                             </StackPanel>

@@ -30,13 +30,14 @@ namespace AppTemplate
     {
         private TemplateListLogic listLogic;
         private List<ListDataModel> listDataBind;
+        private OfficeHelper officeHelper;
         public MainPage()
         {
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(1280, 720);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             listLogic = new TemplateListLogic();
-            
+            officeHelper = new OfficeHelper();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -74,21 +75,13 @@ namespace AppTemplate
             
         }
 
-        private void VisualStateGroup_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        private async void btnOpen_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnOpen_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private async void btnApply_Click(object sender, RoutedEventArgs e)
-        {
-            OfficeHelper office = new OfficeHelper();
-            ListModel model = (ListModel) ((Button) e.OriginalSource).DataContext;
-            office.OpenTemplate(model.FileName);
+            ProgressRing ring = (ProgressRing) ((RelativePanel) ((StackPanel) ((Button) sender).Parent).Parent).FindName("ProgressRing");
+            ring.IsActive = true;
+            ListModel model = (ListModel)((Button)e.OriginalSource).DataContext;
+            await officeHelper.OpenTemplate(model.FileName);
+            ring.IsActive = false;
         }
     }
 }
