@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,6 +32,8 @@ namespace AppTemplate
         private TemplateListLogic listLogic;
         private List<ListDataModel> listDataBind;
         private OfficeHelper officeHelper;
+        private int iClickOpen = 0;
+        private string strDonateUrl = "http://www.misear.com/donate.html";
         public MainPage()
         {
             this.InitializeComponent();
@@ -45,6 +48,7 @@ namespace AppTemplate
             await InitList();
             await GetDataPage(1);
             flipView.ItemsSource = listDataBind;
+            progressInit.IsActive = false;
         }
 
         private async Task InitList()
@@ -82,6 +86,16 @@ namespace AppTemplate
             ListModel model = (ListModel)((Button)e.OriginalSource).DataContext;
             await officeHelper.OpenTemplate(model.FileName);
             ring.IsActive = false;
+            iClickOpen++;
+            if (iClickOpen == 5)
+            {
+                await Launcher.LaunchUriAsync(new Uri(strDonateUrl));
+            }
+        }
+
+        private async void btnDonate_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri(strDonateUrl));
         }
     }
 }

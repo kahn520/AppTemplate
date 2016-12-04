@@ -7,22 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
-
+    
     <Viewbox Stretch="UniformToFill">
-        <Grid Width="1280" Height="720">
+        <Grid Width="1366" Height="768">
             <Grid.Background>
-                <ImageBrush Stretch="Fill" ImageSource="bg.jpg"/>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/bg.jpg"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" VerticalAlignment="Center" FontSize="36" Foreground="White" Margin="40,0,0,0">Office　Designer</TextBlock>
-            <FlipView x:Name="flipView" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="flipView_SelectionChanged">
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36" Foreground="White" Width="300" Margin="40,0,0,0">Office　Designer</TextBlock>
+            <Button x:Name="btnDonate" Width="200" Height="60" HorizontalAlignment="Right" Margin="0,0,30,0" BorderBrush="#FFB2AB93" Click="btnDonate_Click">
+                <Button.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Assets/donate.png"/>
+                </Button.Background>
+            </Button>
+            <FlipView x:Name="flipView" Width="1366" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="flipView_SelectionChanged">
                 <FlipView.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="gridContent">
-                            <GridView ItemsSource="{Binding ListDatas}">
+                        <Grid x:Name="gridContent" Width="1366">
+                            <GridView ItemsSource="{Binding ListDatas}" ItemContainerStyle="{StaticResource GridViewItemStyle}">
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
                                         <RelativePanel Width="250" Height="140">
@@ -30,9 +35,10 @@
                                             <ProgressRing x:Name="ProgressRing" Width="40" Height="40"
                                                           RelativePanel.AlignHorizontalCenterWithPanel="True" 
                                                           RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                                            <StackPanel RelativePanel.AlignBottomWithPanel="True" Orientation="Horizontal" Width="250" Height="40">
-                                                <Button x:Name="btnOpen" Width="250" Height="40" Click="btnOpen_Click">Open</Button>
-                                            </StackPanel>
+                                            <Button x:Name="btnOpen" 
+                                                    RelativePanel.AlignBottomWithPanel="True" 
+                                                    Width="250" Height="35" VerticalAlignment="Bottom"
+                                                    Background="White" Click="btnOpen_Click" >Open</Button>
                                         </RelativePanel>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
@@ -41,6 +47,9 @@
                     </DataTemplate>
                 </FlipView.ItemTemplate>
             </FlipView>
+            <ProgressRing x:Name="progressInit" Grid.Row="1" IsActive="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Width="200" Height="200"></ProgressRing>
         </Grid>
     </Viewbox>
 </Page>
