@@ -8,10 +8,10 @@ namespace DataService
 {
     public static class DataConst
     {
-        private static readonly string m_strBaseAddress = "http://localhost:53779/api";
+        private static readonly string m_strBaseAddress = "http://www.misear.com:8080/api";
 
-        public static readonly string m_strTemplateListAddress = m_strBaseAddress + "/template/TemplateList";
+        public static readonly string m_strTemplateListAddress = m_strBaseAddress + "/Template/TemplateList";
 
-        public static readonly string m_strTemplateListCountAddress = m_strBaseAddress + "/template/templatecount";
+        public static readonly string m_strTemplateListCountAddress = m_strBaseAddress + "/Template/templatecount";
     }
 }

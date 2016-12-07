@@ -37,8 +37,6 @@ namespace AppTemplate
         public MainPage()
         {
             this.InitializeComponent();
-            ApplicationView.PreferredLaunchViewSize = new Size(1280, 720);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             listLogic = new TemplateListLogic();
             officeHelper = new OfficeHelper();
         }

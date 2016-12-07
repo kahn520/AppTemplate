@@ -1,0 +1,2 @@
+MainPackage=G:\App\AppCode\AppTemplate\bin\x86\Release\AppTemplate_1.1.5.0_x86.appx
+SymbolPackage=G:\App\AppCode\AppTemplate\AppPackages\AppTemplate_1.1.5.0_Test\AppTemplate_1.1.5.0_x86.appxsym
