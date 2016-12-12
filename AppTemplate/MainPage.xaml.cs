@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -19,6 +20,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AppLogic;
 using DataModel;
+using HelpLib;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -43,6 +45,11 @@ namespace AppTemplate
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if (!Helper.IsDesktop())
+            {
+                var dialog = new MessageDialog("To ensure that the App runs properly,it should runing in desktop device.", "Infomation");
+                await dialog.ShowAsync();
+            }
             await InitList();
             await GetDataPage(1);
             flipView.ItemsSource = listDataBind;
@@ -79,11 +86,10 @@ namespace AppTemplate
 
         private async void btnOpen_Click(object sender, RoutedEventArgs e)
         {
-            ProgressRing ring = (ProgressRing) ((RelativePanel) ((StackPanel) ((Button) sender).Parent).Parent).FindName("ProgressRing");
-            ring.IsActive = true;
+            ShowLoadingRing(sender, true);
             ListModel model = (ListModel)((Button)e.OriginalSource).DataContext;
             await officeHelper.OpenTemplate(model.FileName);
-            ring.IsActive = false;
+            ShowLoadingRing(sender, false);
             iClickOpen++;
             if (iClickOpen == 5)
             {
@@ -94,6 +100,23 @@ namespace AppTemplate
         private async void btnDonate_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri(strDonateUrl));
+        }
+
+        private void ShowLoadingRing(object sender, bool bShow)
+        {
+            Button btnSender = (Button) sender;
+            if (btnSender != null)
+            {
+                RelativePanel rpane = (RelativePanel) btnSender.Parent;
+                if (rpane != null)
+                {
+                    ProgressRing ring = (ProgressRing)rpane.FindName("ProgressRing");
+                    if (ring != null)
+                    {
+                        ring.IsActive = bShow;
+                    }
+                }
+            }
         }
     }
 }

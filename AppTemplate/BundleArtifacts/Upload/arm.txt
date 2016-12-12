@@ -1,3 +1,3 @@
-MainPackage=G:\App\AppCode\AppTemplate\bin\ARM\Release\Upload\AppTemplate_1.1.5.0_ARM.appx
-SymbolPackage=G:\App\AppCode\AppTemplate\AppPackages\AppTemplate_1.1.5.0\AppTemplate_1.1.5.0_ARM.appxsym
+MainPackage=G:\App\AppCode\AppTemplate\bin\ARM\Release\Upload\AppTemplate_1.1.7.0_ARM.appx
+SymbolPackage=G:\App\AppCode\AppTemplate\AppPackages\AppTemplate_1.1.7.0\AppTemplate_1.1.7.0_ARM.appxsym
 ResourcePack=G:\App\AppCode\AppTemplate\_scale-100.appx
