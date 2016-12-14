@@ -30,7 +30,10 @@ namespace AppLogic
             {
                 ObservableCollection<ListModel> data = await db.GetPatternList(page);
                 FormatData(ref data);
-                dicDatas.Add(page, data);
+                if (!dicDatas.ContainsKey(page))
+                    dicDatas.Add(page, data);
+                else
+                    dicDatas[page] = data;
                 return data;
             }
         }

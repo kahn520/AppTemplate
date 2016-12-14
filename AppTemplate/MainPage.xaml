@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
-    
+
     <Viewbox Stretch="UniformToFill">
         <Grid Width="1366" Height="768">
             <Grid.Background>
@@ -32,9 +32,12 @@
                                     <DataTemplate>
                                         <RelativePanel Width="250" Height="140">
                                             <Image Source="{Binding ThumbName}" Stretch="Fill" Width="250" Height="140"></Image>
-                                            <ProgressRing x:Name="ProgressRing" Width="40" Height="40"
+                                            <ProgressRing x:Name="ProgressRing" Width="50" Height="50"
                                                           RelativePanel.AlignHorizontalCenterWithPanel="True" 
                                                           RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                                            <TextBlock x:Name="txtPercent" Text="0%" Foreground="#FF963BDC" FontWeight="Bold" Visibility="Collapsed"
+                                                       RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                                                       RelativePanel.AlignVerticalCenterWithPanel="True"  />
                                             <Button x:Name="btnOpen" 
                                                     RelativePanel.AlignBottomWithPanel="True" 
                                                     Width="250" Height="35" VerticalAlignment="Bottom"

@@ -86,10 +86,13 @@ namespace AppTemplate
 
         private async void btnOpen_Click(object sender, RoutedEventArgs e)
         {
+            TextBlock txtPercent = (TextBlock)((RelativePanel)((Button)sender).Parent).FindName("txtPercent");
             ShowLoadingRing(sender, true);
+            txtPercent.Visibility = Visibility.Visible;
             ListModel model = (ListModel)((Button)e.OriginalSource).DataContext;
-            await officeHelper.OpenTemplate(model.FileName);
+            await officeHelper.OpenTemplate(model.FileName, txtPercent);
             ShowLoadingRing(sender, false);
+            txtPercent.Visibility = Visibility.Collapsed;
             iClickOpen++;
             if (iClickOpen == 5)
             {
